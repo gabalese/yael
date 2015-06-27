@@ -1,6 +1,4 @@
-#!/usr/bin/env python
 # coding=utf-8
-
 """
 An abstract Rendition, holding:
 
@@ -11,22 +9,17 @@ An abstract Rendition, holding:
 5. the Multiple Rendition rendition:* properties (optional in EPUB 3)
 
 """
-
+from abc import ABCMeta, abstractmethod
 from yael.element import Element
 from yael.jsonable import JSONAble
 
-__author__ = "Alberto Pettarin"
-__copyright__ = "Copyright 2015, Alberto Pettarin (www.albertopettarin.it)"
-__license__ = "MIT"
-__version__ = "0.0.9"
-__email__ = "alberto@albertopettarin.it"
-__status__ = "Development"
 
 class Rendition(Element):
     """
     Build an abstract Rendition or
     parse it from `obj` or `string`.
     """
+    __metaclass__ = ABCMeta
 
     def __init__(self, internal_path=None, obj=None, string=None):
         self.v_full_path = None
@@ -36,41 +29,40 @@ class Rendition(Element):
         self.v_rendition_language = None
         self.v_rendition_layout = None
         self.v_rendition_media = None
-        self.mo_documents = []
+        self.media_overlay_documents = []
         self.nav_document = None
         self.ncx_toc = None
         self.pac_document = None
-        Element.__init__(
-            self,
-            internal_path=internal_path,
-            obj=obj,
-            string=string)
+        super().__init__(internal_path=internal_path,
+                         obj=obj,
+                         string=string)
 
+    @abstractmethod
     def parse_object(self, obj):
         pass
 
     def json_object(self, recursive=True):
         obj = {
-            "full_path":            self.v_full_path,
-            "media_type":           self.v_media_type,
+            "full_path": self.v_full_path,
+            "media_type": self.v_media_type,
             "rendition_accessmode": self.v_rendition_accessmode,
-            "rendition_label":      self.v_rendition_label,
-            "rendition_language":   self.v_rendition_language,
-            "rendition_layout":     self.v_rendition_layout,
-            "rendition_media":      self.v_rendition_media,
-            "mo_documents":         len(self.mo_documents),
-            "nav_document":         (self.nav_document == None),
-            "ncx_toc":              (self.ncx_toc == None),
-            "pac_document":         (self.pac_document == None),
+            "rendition_label": self.v_rendition_label,
+            "rendition_language": self.v_rendition_language,
+            "rendition_layout": self.v_rendition_layout,
+            "rendition_media": self.v_rendition_media,
+            "mo_documents": len(self.media_overlay_documents),
+            "nav_document": (self.nav_document is None),
+            "ncx_toc": (self.ncx_toc is None),
+            "pac_document": (self.pac_document is None),
         }
         if recursive:
-            obj["mo_documents"] = JSONAble.safe(self.mo_documents)
+            obj["mo_documents"] = JSONAble.safe(self.media_overlay_documents)
             obj["nav_document"] = JSONAble.safe(self.nav_document)
             obj["ncx_toc"] = JSONAble.safe(self.ncx_toc)
             obj["pac_document"] = JSONAble.safe(self.pac_document)
         return obj
 
-    def add_mo_document(self, mo_document):
+    def add_media_overlay_document(self, mo_document):
         """
         Add the given Media Overlay Document to this Rendition.
 
@@ -78,7 +70,7 @@ class Rendition(Element):
         :type  mo_document: :class:`yael.modocument.MODocument`
 
         """
-        self.mo_documents.append(mo_document)
+        self.media_overlay_documents.append(mo_document)
 
     @property
     def v_full_path(self):
@@ -172,7 +164,7 @@ class Rendition(Element):
         self.__v_rendition_media = v_rendition_media
 
     @property
-    def mo_documents(self):
+    def media_overlay_documents(self):
         """
         The Media Overlay Documents associated with this Rendition.
 
@@ -180,8 +172,8 @@ class Rendition(Element):
         """
         return self.__mo_documents
 
-    @mo_documents.setter
-    def mo_documents(self, mo_documents):
+    @media_overlay_documents.setter
+    def media_overlay_documents(self, mo_documents):
         self.__mo_documents = mo_documents
 
     @property
@@ -244,11 +236,10 @@ class Rendition(Element):
         """
         try:
             return self.nav_document.toc
-        except:
-            pass
-        if self.ncx_toc != None:
-            return self.ncx_toc
-        return None
+        except Exception:
+            if self.ncx_toc != None:
+                return self.ncx_toc
+            return None
 
     @property
     def landmarks(self):
@@ -260,8 +251,7 @@ class Rendition(Element):
         """
         try:
             return self.nav_document.landmarks
-        except:
-            pass
-        return None
+        except Exception:
+            return None
 
 

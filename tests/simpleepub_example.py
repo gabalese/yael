@@ -1,4 +1,4 @@
-#!/usr/bin/python
+
 
 """
 SimpleEPUB test

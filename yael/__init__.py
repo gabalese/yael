@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 # coding=utf-8
 
 """
@@ -47,7 +47,7 @@ from yael.pacdocument import PacDocument
 from yael.parsing import Parsing
 from yael.publication import Publication
 from yael.rendition import Rendition
-from yael.rmdocument import RMDocument
+from yael.rmdocument import RenditionMappingDocument
 from yael.rmlocation import RMLocation
 from yael.rmpoint import RMPoint
 from yael.simpleepub import SimpleEPUB

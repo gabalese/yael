@@ -1,0 +1,506 @@
+{
+  "manifestation": "compressed",
+  "metadata": null,
+  "release_identifier": "urn:uuid:83136816-fa25-11e2-93d4-001cc0a62c0b",
+  "container": {
+    "rm_document": null,
+    "renditions": [
+      {
+        "nav_document": null,
+        "rendition_media": null,
+        "rendition_language": null,
+        "pac_document": {
+          "metadata": {
+            "id": null,
+            "metadata": [
+              {
+                "id": null,
+                "refinements": [],
+                "opf_file_as": null,
+                "xml_lang": null,
+                "opf_event": null,
+                "opf_scheme": null,
+                "opf_role": null,
+                "text": null,
+                "tag": "{http://purl.org/dc/elements/1.1/}coverage",
+                "dir": null
+              },
+              {
+                "id": null,
+                "refinements": [],
+                "opf_file_as": "Lovecraft, Howard Phillips",
+                "xml_lang": null,
+                "opf_event": null,
+                "opf_scheme": null,
+                "opf_role": "aut",
+                "text": "Howard Phillips Lovecraft",
+                "tag": "{http://purl.org/dc/elements/1.1/}creator",
+                "dir": null
+              },
+              {
+                "id": null,
+                "refinements": [],
+                "opf_file_as": null,
+                "xml_lang": null,
+                "opf_event": "original-publication",
+                "opf_scheme": null,
+                "opf_role": null,
+                "text": "1936",
+                "tag": "{http://purl.org/dc/elements/1.1/}date",
+                "dir": null
+              },
+              {
+                "id": null,
+                "refinements": [],
+                "opf_file_as": null,
+                "xml_lang": null,
+                "opf_event": "ops-publication",
+                "opf_scheme": null,
+                "opf_role": null,
+                "text": "2007-01-23",
+                "tag": "{http://purl.org/dc/elements/1.1/}date",
+                "dir": null
+              },
+              {
+                "id": null,
+                "refinements": [],
+                "opf_file_as": null,
+                "xml_lang": null,
+                "opf_event": null,
+                "opf_scheme": null,
+                "opf_role": null,
+                "text": "The story takes place in Providence, Rhode Island and revolves around the Church of Starry Wisdom. The cult uses an ancient artifact known as the Shining Trapezohedron to summon a terrible being from the depths of time and space.\nThe Shining Trapezohedron was discovered in Egyptian ruins, in a box of alien construction, by Professor Enoch Bowen before he returned to Providence, Rhode Island in 1844. Members of the Church of Starry Wisdom in Providence would awaken the Haunter of the Dark, an avatar of Nyarlathotep, by gazing into the glowing crystal. Summoned from the black gulfs of chaos, this being could show other worlds, other galaxies, and the secrets of arcane and paradoxical knowledge; but he demanded monstrous sacrifices, hinted at by disfigured skeletons that were later found in the church. The Haunter of the Dark was banished by light and could not cross a lighted area.",
+                "tag": "{http://purl.org/dc/elements/1.1/}description",
+                "dir": null
+              },
+              {
+                "id": "PrimaryID",
+                "refinements": [],
+                "opf_file_as": null,
+                "xml_lang": null,
+                "opf_event": null,
+                "opf_scheme": "URN",
+                "opf_role": null,
+                "text": "urn:uuid:83136816-fa25-11e2-93d4-001cc0a62c0b",
+                "tag": "{http://purl.org/dc/elements/1.1/}identifier",
+                "dir": null
+              },
+              {
+                "id": null,
+                "refinements": [],
+                "opf_file_as": null,
+                "xml_lang": null,
+                "opf_event": null,
+                "opf_scheme": "URI",
+                "opf_role": null,
+                "text": "http://www.feedbooks.com/book/254",
+                "tag": "{http://purl.org/dc/elements/1.1/}identifier",
+                "dir": null
+              },
+              {
+                "id": null,
+                "refinements": [],
+                "opf_file_as": null,
+                "xml_lang": null,
+                "opf_event": null,
+                "opf_scheme": null,
+                "opf_role": null,
+                "text": "en",
+                "tag": "{http://purl.org/dc/elements/1.1/}language",
+                "dir": null
+              },
+              {
+                "id": null,
+                "refinements": [],
+                "opf_file_as": null,
+                "xml_lang": null,
+                "opf_event": null,
+                "opf_scheme": null,
+                "opf_role": null,
+                "text": "Feedbooks",
+                "tag": "{http://purl.org/dc/elements/1.1/}publisher",
+                "dir": null
+              },
+              {
+                "id": null,
+                "refinements": [],
+                "opf_file_as": null,
+                "xml_lang": null,
+                "opf_event": null,
+                "opf_scheme": null,
+                "opf_role": null,
+                "text": "This work is available for countries where copyright is Life+70.",
+                "tag": "{http://purl.org/dc/elements/1.1/}rights",
+                "dir": null
+              },
+              {
+                "id": null,
+                "refinements": [],
+                "opf_file_as": null,
+                "xml_lang": null,
+                "opf_event": null,
+                "opf_scheme": null,
+                "opf_role": null,
+                "text": "http://en.wikisource.org",
+                "tag": "{http://purl.org/dc/elements/1.1/}source",
+                "dir": null
+              },
+              {
+                "id": null,
+                "refinements": [],
+                "opf_file_as": null,
+                "xml_lang": null,
+                "opf_event": null,
+                "opf_scheme": null,
+                "opf_role": null,
+                "text": "Fiction",
+                "tag": "{http://purl.org/dc/elements/1.1/}subject",
+                "dir": null
+              },
+              {
+                "id": null,
+                "refinements": [],
+                "opf_file_as": null,
+                "xml_lang": null,
+                "opf_event": null,
+                "opf_scheme": null,
+                "opf_role": null,
+                "text": "Horror",
+                "tag": "{http://purl.org/dc/elements/1.1/}subject",
+                "dir": null
+              },
+              {
+                "id": null,
+                "refinements": [],
+                "opf_file_as": null,
+                "xml_lang": null,
+                "opf_event": null,
+                "opf_scheme": null,
+                "opf_role": null,
+                "text": "Short Stories",
+                "tag": "{http://purl.org/dc/elements/1.1/}subject",
+                "dir": null
+              },
+              {
+                "id": null,
+                "refinements": [],
+                "opf_file_as": null,
+                "xml_lang": null,
+                "opf_event": null,
+                "opf_scheme": null,
+                "opf_role": null,
+                "text": "The Haunter of the Dark",
+                "tag": "{http://purl.org/dc/elements/1.1/}title",
+                "dir": null
+              },
+              {
+                "id": null,
+                "refinements": [],
+                "content": "book-cover",
+                "text": null,
+                "tag": "{http://www.idpf.org/2007/opf}meta",
+                "name": "cover"
+              }
+            ],
+            "xml_lang": null,
+            "links": [],
+            "dir": null
+          },
+          "manifest": {
+            "id": null,
+            "items": [
+              {
+                "href": "cover.xml",
+                "id": "cover",
+                "properties": null,
+                "refinements": [],
+                "media_overlay": null,
+                "media_type": "application/xhtml+xml",
+                "fallback": null
+              },
+              {
+                "href": "title.xml",
+                "id": "titlepage",
+                "properties": null,
+                "refinements": [],
+                "media_overlay": null,
+                "media_type": "application/xhtml+xml",
+                "fallback": null
+              },
+              {
+                "href": "about.xml",
+                "id": "about",
+                "properties": null,
+                "refinements": [],
+                "media_overlay": null,
+                "media_type": "application/xhtml+xml",
+                "fallback": null
+              },
+              {
+                "href": "main0.xml",
+                "id": "main0",
+                "properties": null,
+                "refinements": [],
+                "media_overlay": null,
+                "media_type": "application/xhtml+xml",
+                "fallback": null
+              },
+              {
+                "href": "similar.xml",
+                "id": "similar",
+                "properties": null,
+                "refinements": [],
+                "media_overlay": null,
+                "media_type": "application/xhtml+xml",
+                "fallback": null
+              },
+              {
+                "href": "feedbooks.xml",
+                "id": "feedbooks",
+                "properties": null,
+                "refinements": [],
+                "media_overlay": null,
+                "media_type": "application/xhtml+xml",
+                "fallback": null
+              },
+              {
+                "href": "css/page.css",
+                "id": "page-css",
+                "properties": null,
+                "refinements": [],
+                "media_overlay": null,
+                "media_type": "text/css",
+                "fallback": null
+              },
+              {
+                "href": "css/feedbooks.css",
+                "id": "feedbooks-css",
+                "properties": null,
+                "refinements": [],
+                "media_overlay": null,
+                "media_type": "text/css",
+                "fallback": null
+              },
+              {
+                "href": "css/title.css",
+                "id": "titlepage-css",
+                "properties": null,
+                "refinements": [],
+                "media_overlay": null,
+                "media_type": "text/css",
+                "fallback": null
+              },
+              {
+                "href": "css/about.css",
+                "id": "about-css",
+                "properties": null,
+                "refinements": [],
+                "media_overlay": null,
+                "media_type": "text/css",
+                "fallback": null
+              },
+              {
+                "href": "css/main.css",
+                "id": "main-css",
+                "properties": null,
+                "refinements": [],
+                "media_overlay": null,
+                "media_type": "text/css",
+                "fallback": null
+              },
+              {
+                "href": "css/footnotes.css",
+                "id": "footnotes-css",
+                "properties": null,
+                "refinements": [],
+                "media_overlay": null,
+                "media_type": "text/css",
+                "fallback": null
+              },
+              {
+                "href": "images/logo-feedbooks-tiny.png",
+                "id": "logo-feedbooks-tiny",
+                "properties": null,
+                "refinements": [],
+                "media_overlay": null,
+                "media_type": "image/png",
+                "fallback": null
+              },
+              {
+                "href": "images/logo-feedbooks.png",
+                "id": "logo-feedbooks",
+                "properties": null,
+                "refinements": [],
+                "media_overlay": null,
+                "media_type": "image/png",
+                "fallback": null
+              },
+              {
+                "href": "images/cover.png",
+                "id": "book-cover",
+                "properties": null,
+                "refinements": [],
+                "media_overlay": null,
+                "media_type": "image/png",
+                "fallback": null
+              },
+              {
+                "href": "fb.ncx",
+                "id": "ncx",
+                "properties": null,
+                "refinements": [],
+                "media_overlay": null,
+                "media_type": "application/x-dtbncx+xml",
+                "fallback": null
+              }
+            ]
+          },
+          "collection": null,
+          "bindings": null,
+          "spine": {
+            "id": null,
+            "itemrefs": [
+              {
+                "id": null,
+                "properties": null,
+                "linear": "yes",
+                "idref": "cover"
+              },
+              {
+                "id": null,
+                "properties": null,
+                "linear": "yes",
+                "idref": "titlepage"
+              },
+              {
+                "id": null,
+                "properties": null,
+                "linear": "yes",
+                "idref": "about"
+              },
+              {
+                "id": null,
+                "properties": null,
+                "linear": "yes",
+                "idref": "main0"
+              },
+              {
+                "id": null,
+                "properties": null,
+                "linear": "yes",
+                "idref": "similar"
+              },
+              {
+                "id": null,
+                "properties": null,
+                "linear": "yes",
+                "idref": "feedbooks"
+              }
+            ],
+            "toc": "ncx",
+            "page_progression_direction": null
+          },
+          "prefix": null,
+          "unique_identifier": "urn:uuid:83136816-fa25-11e2-93d4-001cc0a62c0b",
+          "dir": null,
+          "id": null,
+          "version": "2.0",
+          "xml_lang": null,
+          "guide": {
+            "id": null,
+            "references": [
+              {
+                "href": "cover.xml",
+                "id": null,
+                "type": "cover",
+                "title": "Cover"
+              },
+              {
+                "href": "title.xml",
+                "id": null,
+                "type": "title-page",
+                "title": "Title Page"
+              },
+              {
+                "href": "about.xml",
+                "id": null,
+                "type": "bibliography",
+                "title": "About"
+              },
+              {
+                "href": "main0.xml",
+                "id": null,
+                "type": "text",
+                "title": "Main0"
+              },
+              {
+                "href": "similar.xml",
+                "id": null,
+                "type": "text",
+                "title": "Similar Books"
+              },
+              {
+                "href": "feedbooks.xml",
+                "id": null,
+                "type": "copyright-page",
+                "title": "Feedbooks"
+              }
+            ]
+          }
+        },
+        "rendition_label": null,
+        "rendition_layout": null,
+        "ncx_toc": {
+          "dtb_maxpagenumber": "0",
+          "id": null,
+          "docauthor": "Lovecraft, Howard Phillips",
+          "dtb_uid": "83136816-fa25-11e2-93d4-001cc0a62c0b",
+          "internal_path": "OPS/fb.ncx",
+          "doctitle": "The Haunter of the Dark",
+          "dtb_totalpagecount": "0",
+          "version": "2005-1",
+          "children": [
+            {
+              "id": "level1-titlepage",
+              "text": "Title",
+              "playorder": "1",
+              "children": [],
+              "src": "title.xml"
+            },
+            {
+              "id": "level1-about",
+              "text": "About",
+              "playorder": "2",
+              "children": [],
+              "src": "about.xml"
+            },
+            {
+              "id": "txt0",
+              "text": "The Haunter of the Dark",
+              "playorder": "3",
+              "children": [],
+              "src": "main0.xml"
+            },
+            {
+              "id": "level1-similar",
+              "text": "Recommendations",
+              "playorder": "4",
+              "children": [],
+              "src": "similar.xml"
+            }
+          ],
+          "xml_lang": "en",
+          "dtb_generator": null,
+          "dtb_depth": "1"
+        },
+        "media_type": "application/oebps-package+xml",
+        "rendition_accessmode": null,
+        "full_path": "OPS/fb.opf",
+        "mo_documents": []
+      }
+    ],
+    "internal_path": "META-INF/container.xml"
+  },
+  "size": 98233,
+  "unique_identifier": "urn:uuid:83136816-fa25-11e2-93d4-001cc0a62c0b"
+}

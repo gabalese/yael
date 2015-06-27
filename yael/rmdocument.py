@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # coding=utf-8
 
 """
@@ -11,14 +10,8 @@ from yael.namespace import Namespace
 from yael.rmlocation import RMLocation
 import yael.util
 
-__author__ = "Alberto Pettarin"
-__copyright__ = "Copyright 2015, Alberto Pettarin (www.albertopettarin.it)"
-__license__ = "MIT"
-__version__ = "0.0.9"
-__email__ = "alberto@albertopettarin.it"
-__status__ = "Development"
 
-class RMDocument(Element):
+class RenditionMappingDocument(Element):
     """
     Build the EPUB 3 Multiple Renditions Rendition Mapping Document or
     parse it from `obj` or `string`.
@@ -27,9 +20,9 @@ class RMDocument(Element):
     A_TYPE = "type"
     A_NS_TYPE = "{{{0}}}{1}".format(Namespace.EPUB, A_TYPE)
     E_BODY = "body"
-    E_HEAD = "head" # TODO currently not parsed
+    E_HEAD = "head"  # TODO currently not parsed
     E_HTML = "html"
-    E_META = "meta" # TODO currently not parsed
+    E_META = "meta"  # TODO currently not parsed
     E_NAV = "nav"
     E_UL = "ul"
     V_RESOURCE_MAP = "resource-map"
@@ -37,58 +30,50 @@ class RMDocument(Element):
     def __init__(self, internal_path=None, obj=None, string=None):
         self.v_epub_type = None
         self.locations = []
-        Element.__init__(
-            self,
-            internal_path=internal_path,
-            obj=obj,
-            string=string)
+        super().__init__(internal_path=internal_path, obj=obj, string=string)
 
     def json_object(self, recursive=True):
         obj = {
             "internal_path": self.internal_path,
-            "epub_type":     self.v_epub_type,
-            "locations":     len(self.locations),
+            "epub_type": self.v_epub_type,
+            "locations": len(self.locations),
         }
         if recursive:
             obj["locations"] = JSONAble.safe(self.locations)
         return obj
 
     def parse_object(self, obj):
-        try:
-            # locate `<nav>` element
-            nav_arr = yael.util.query_xpath(
-                obj=obj,
-                query="/{0}:{1}/{0}:{2}/{0}:{3}",
-                args=[
-                    'x',
-                    RMDocument.E_HTML,
-                    RMDocument.E_BODY,
-                    RMDocument.E_NAV],
+        # locate `<nav>` element
+        nav_arr = yael.util.query_xpath(
+            obj=obj,
+            query="/{0}:{1}/{0}:{2}/{0}:{3}",
+            args=['x',
+                  RenditionMappingDocument.E_HTML,
+                  RenditionMappingDocument.E_BODY,
+                  RenditionMappingDocument.E_NAV],
+            nsp={'x': Namespace.XHTML},
+            required=RenditionMappingDocument.E_NAV)
+        nav = nav_arr[0]
+
+        # check we have the correct type
+        epub_type = nav.get(RenditionMappingDocument.A_NS_TYPE)
+        if epub_type == RenditionMappingDocument.V_RESOURCE_MAP:
+            self.v_epub_type = epub_type
+
+            # locate `<ul>` elements
+            ul_arr = yael.util.query_xpath(
+                obj=nav,
+                query="{0}:{1}",
+                args=['x', RenditionMappingDocument.E_UL],
                 nsp={'x': Namespace.XHTML},
-                required=RMDocument.E_NAV)
-            nav = nav_arr[0]
-
-            # check we have the correct type
-            epub_type = nav.get(RMDocument.A_NS_TYPE)
-            if epub_type == RMDocument.V_RESOURCE_MAP:
-                self.v_epub_type = epub_type
-
-                # locate `<ul>` elements
-                ul_arr = yael.util.query_xpath(
-                    obj=nav,
-                    query="{0}:{1}",
-                    args=['x', RMDocument.E_UL],
-                    nsp={'x': Namespace.XHTML},
-                    required=None)
-                for ul_element in ul_arr:
-                    ul_parsed = None
-                    try:
-                        ul_parsed = RMLocation(obj=ul_element)
-                        self.add_location(ul_parsed)
-                    except:
-                        pass
-        except:
-            raise Exception("Error while parsing the given object")
+                required=None)
+            for ul_element in ul_arr:
+                ul_parsed = None
+                try:
+                    ul_parsed = RMLocation(obj=ul_element)
+                    self.add_location(ul_parsed)
+                except:
+                    pass
 
     def add_location(self, location):
         """
@@ -125,5 +110,3 @@ class RMDocument(Element):
     @v_epub_type.setter
     def v_epub_type(self, v_epub_type):
         self.__v_epub_type = v_epub_type
-
-

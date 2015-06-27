@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # coding=utf-8
 
 """
@@ -11,12 +10,6 @@ from yael.element import Element
 from yael.namespace import Namespace
 import yael.util
 
-__author__ = "Alberto Pettarin"
-__copyright__ = "Copyright 2015, Alberto Pettarin (www.albertopettarin.it)"
-__license__ = "MIT"
-__version__ = "0.0.9"
-__email__ = "alberto@albertopettarin.it"
-__status__ = "Development"
 
 class Metadata(Element):
     """
@@ -35,61 +28,54 @@ class Metadata(Element):
     def __init__(self, internal_path=None, obj=None, string=None):
         self.v_dcterms_modified = None
         self.v_unique_identifier = None
-        Element.__init__(
-            self,
-            internal_path=internal_path,
-            obj=obj,
-            string=string)
+        super().__init__(internal_path=internal_path, obj=obj, string=string)
 
     def json_object(self, recursive=True):
-        obj = {
-            "internal_path":      self.internal_path,
-            "unique_identifier":  self.v_unique_identifier,
-            "dcterms_modified":   self.v_dcterms_modified,
-            "release_dentifier":  self.v_release_identifier
+        obj_as_dictionary = {
+            "internal_path": self.internal_path,
+            "unique_identifier": self.v_unique_identifier,
+            "dcterms_modified": self.v_dcterms_modified,
+            "release_dentifier": self.v_release_identifier
         }
-        return obj
+        return obj_as_dictionary
 
     def parse_object(self, obj):
-        try:
-            # locate `<container>` element
-            metadata_arr = yael.util.query_xpath(
-                obj=obj,
-                query="/{0}:{1}",
-                args=['m', Metadata.E_METADATA],
-                nsp={'m': Namespace.METADATA},
-                required=Metadata.E_METADATA)
-            metadata = metadata_arr[0]
+        # locate `<container>` element
+        metadata_arr = yael.util.query_xpath(
+            obj=obj,
+            query="/{0}:{1}",
+            args=['m', Metadata.E_METADATA],
+            nsp={'m': Namespace.METADATA},
+            required=Metadata.E_METADATA)
+        metadata = metadata_arr[0]
 
-            # get unique-identifier id
-            u_i_id = metadata.get(Metadata.A_UNIQUE_IDENTIFIER)
+        # get unique-identifier id
+        u_i_id = metadata.get(Metadata.A_UNIQUE_IDENTIFIER)
 
-            # locate `<rootfile>` elements
-            identifier_arr = yael.util.query_xpath(
-                obj=metadata,
-                query="{0}:{1}",
-                args=['d', Metadata.E_IDENTIFIER],
-                nsp={'d': Namespace.DC},
-                required=None)
-            for identifier in identifier_arr:
-                i_id = identifier.get(Metadata.A_ID)
-                if i_id == u_i_id:
-                    self.v_unique_identifier = yael.util.safe_strip(
-                        identifier.text)
+        # locate `<rootfile>` elements
+        identifier_arr = yael.util.query_xpath(
+            obj=metadata,
+            query="{0}:{1}",
+            args=['d', Metadata.E_IDENTIFIER],
+            nsp={'d': Namespace.DC},
+            required=None)
+        for identifier in identifier_arr:
+            i_id = identifier.get(Metadata.A_ID)
+            if i_id == u_i_id:
+                self.v_unique_identifier = yael.util.safe_strip(
+                    identifier.text)
 
-            # locate `<link>` optional element
-            meta_arr = yael.util.query_xpath(
-                obj=metadata,
-                query="{0}:{1}",
-                args=['m', Metadata.E_META],
-                nsp={'m': Namespace.METADATA},
-                required=None)
-            for meta in meta_arr:
-                prop = meta.get(Metadata.A_PROPERTY)
-                if prop == Metadata.V_DCTERMS_MODIFIED:
-                    self.v_dcterms_modified = yael.util.safe_strip(meta.text)
-        except:
-            raise Exception("Error while parsing the given object")
+        # locate `<link>` optional element
+        meta_arr = yael.util.query_xpath(
+            obj=metadata,
+            query="{0}:{1}",
+            args=['m', Metadata.E_META],
+            nsp={'m': Namespace.METADATA},
+            required=None)
+        for meta in meta_arr:
+            prop = meta.get(Metadata.A_PROPERTY)
+            if prop == Metadata.V_DCTERMS_MODIFIED:
+                self.v_dcterms_modified = yael.util.safe_strip(meta.text)
 
     @property
     def v_dcterms_modified(self):
@@ -131,7 +117,3 @@ class Metadata(Element):
                 self.v_unique_identifier,
                 self.v_dcterms_modified)
         return self.v_unique_identifier
-
-
-
-

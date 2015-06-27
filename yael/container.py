@@ -1,6 +1,4 @@
-#!/usr/bin/env python
 # coding=utf-8
-
 """
 The `META-INF/container.xml` file, storing:
 
@@ -13,15 +11,9 @@ from yael.jsonable import JSONAble
 from yael.mediatype import MediaType
 from yael.namespace import Namespace
 from yael.rendition import Rendition
-from yael.rmdocument import RMDocument
+from yael.rmdocument import RenditionMappingDocument
 import yael.util
 
-__author__ = "Alberto Pettarin"
-__copyright__ = "Copyright 2015, Alberto Pettarin (www.albertopettarin.it)"
-__license__ = "MIT"
-__version__ = "0.0.9"
-__email__ = "alberto@albertopettarin.it"
-__status__ = "Development"
 
 class Container(Element):
     """
@@ -36,7 +28,6 @@ class Container(Element):
     A_LANGUAGE = "language"
     A_LAYOUT = "layout"
     A_MEDIA = "media"
-    A_MEDIA_TYPE = "media-type"
     A_MEDIA_TYPE = "media-type"
     A_REL = "rel"
     A_NS_ACCESSMODE = "{{{0}}}{1}".format(Namespace.RENDITION, A_ACCESSMODE)
@@ -68,8 +59,8 @@ class Container(Element):
     def json_object(self, recursive=True):
         obj = {
             "internal_path": self.internal_path,
-            "renditions":    len(self.renditions),
-            "rm_document":   (self.rm_document == None),
+            "renditions": len(self.renditions),
+            "rm_document": self.rm_document is None,
         }
         if recursive:
             obj["renditions"] = JSONAble.safe(self.renditions)
@@ -77,37 +68,34 @@ class Container(Element):
         return obj
 
     def parse_object(self, obj):
-        try:
-            # locate `<container>` element
-            container_arr = yael.util.query_xpath(
-                obj=obj,
-                query="/{0}:{1}",
-                args=['c', Container.E_CONTAINER],
-                nsp={'c': Namespace.CONTAINER},
-                required=Container.E_CONTAINER)
-            container = container_arr[0]
+        # locate `<container>` element
+        container_arr = yael.util.query_xpath(
+            obj=obj,
+            query="/{0}:{1}",
+            args=['c', Container.E_CONTAINER],
+            nsp={'c': Namespace.CONTAINER},
+            required=Container.E_CONTAINER)
+        container = container_arr[0]
 
-            # locate `<rootfile>` elements
-            rootfile_arr = yael.util.query_xpath(
-                obj=container,
-                query="{0}:{1}/{0}:{2}",
-                args=['c', Container.E_ROOTFILES, Container.E_ROOTFILE],
-                nsp={'c': Namespace.CONTAINER},
-                required=None)
-            for rootfile in rootfile_arr:
-                self._parse_rootfile(rootfile)
+        # locate `<rootfile>` elements
+        rootfile_arr = yael.util.query_xpath(
+            obj=container,
+            query="{0}:{1}/{0}:{2}",
+            args=['c', Container.E_ROOTFILES, Container.E_ROOTFILE],
+            nsp={'c': Namespace.CONTAINER},
+            required=None)
+        for rootfile in rootfile_arr:
+            self._parse_rootfile(rootfile)
 
-            # locate `<link>` optional element
-            link_arr = yael.util.query_xpath(
-                obj=container,
-                query="{0}:{1}",
-                args=['c', Container.E_LINK],
-                nsp={'c': Namespace.CONTAINER},
-                required=None)
-            for link in link_arr:
-                self._parse_link(link)
-        except:
-            raise Exception("Error while parsing the given object")
+        # locate `<link>` optional element
+        link_arr = yael.util.query_xpath(
+            obj=container,
+            query="{0}:{1}",
+            args=['c', Container.E_LINK],
+            nsp={'c': Namespace.CONTAINER},
+            required=None)
+        for link in link_arr:
+            self._parse_link(link)
 
     def add_rendition(self, rendition):
         """
@@ -198,7 +186,7 @@ class Container(Element):
         if ((rel == Container.V_REL_MAPPING) and
                 (media_type == MediaType.XHTML) and
                 (href != None)):
-            self.rm_document = RMDocument(internal_path=href)
+            self.rm_document = RenditionMappingDocument(internal_path=href)
         return None
 
 

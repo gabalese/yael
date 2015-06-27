@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 """
 Print the directed network graph for a given EPUB ebook.
 

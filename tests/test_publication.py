@@ -1,89 +1,49 @@
-#!/usr/bin/python
-
-"""
-Publication test
-"""
-
-# standard modules
 import os
-import sys
+import unittest
+import json
 
-# yael modules
-# TODO find a better way to do this
-PROJECT_DIRECTORY = os.path.dirname(
-    os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
-sys.path.append(PROJECT_DIRECTORY)
-from yael import DC
-from yael import MediaType
-from yael import OPFMeta3
-from yael import Parsing
 from yael import Publication
 
-__author__ = "Alberto Pettarin"
-__copyright__ = "Copyright 2015, Alberto Pettarin (www.albertopettarin.it)"
-__license__ = "MIT"
-__version__ = "0.0.9"
-__email__ = "alberto@albertopettarin.it"
-__status__ = "Development"
+location = lambda *path: os.path.join(os.path.dirname(os.path.realpath(__file__)), *path)
 
-def usage():
-    print("")
-    print("$ ./%s path/to/dir [--no-mo]" % sys.argv[0])
-    print("$ ./%s path/to/file.epub [--no-mo]" % sys.argv[0])
-    print("")
+class TestPublication(unittest.TestCase):
+    """
+    Test with an EPUB2 simple publication
+    """
 
-def main():
-    if (len(sys.argv) > 2) and (sys.argv[2] == "--no-mo"):
-        p = Publication(
-            path=sys.argv[1],
-            parsing_options=[Parsing.NO_MEDIA_OVERLAY])
-    elif len(sys.argv) > 1:
-        p = Publication(
-            path=sys.argv[1],
-            parsing_options=[])
-    else:
-        usage()
-        return
+    def setUp(self):
+        epubfile = location('assets/lovecraft.epub')
+        self.publication = Publication(path=epubfile)
 
-    print("")
-    print("Manifestation       = %s" % p.manifestation)
-    print("Size                = %s" % p.size)
-    print("Unique identifier   = %s" % p.unique_identifier)
-    print("dcterms:modified    = %s" % p.dcterms_modified)
-    print("Release identifier  = %s" % p.release_identifier)
-    print("Version             = %s" % p.version)
-    print("")
-    print("Renditions          = %d" % (len(p.container.renditions)))
-    print("")
-    print("Internal path cover = %s" % p.internal_path_cover_image)
-    print("")
+    def test_parse_basic_information(self):
+        self.assertEquals("urn:uuid:83136816-fa25-11e2-93d4-001cc0a62c0b", self.publication.unique_identifier)
+        self.assertEquals("OPS/images/cover.png", self.publication.internal_path_cover_image)
+        self.assertEquals("2.0", self.publication.version)
 
-    # print the JSON string of this publication
-    # pretty, 4-chars indented, keys not sorted, entries with empty/null values not removed
-    #print(p)
+    def test_structure_is_readable(self):
+        reference_json = json.loads(
+            open(location('assets/lovecraft.json')).read()
+        )
 
-    # print the JSON string of this publication, compressed
-    #print(p.json_string())
+        self.assertEquals(
+            reference_json['container'],
+            self.publication.json_object().get('container')
+        )
 
-    # print the JSON string of this publication, compressed and clean
-    #print(p.json_string(clean=True))
+    def test_ncx_toc(self):
+        self.assertEquals(
+            "83136816-fa25-11e2-93d4-001cc0a62c0b",
+            self.publication.container.default_rendition.ncx_toc.json_object().get('dtb_uid')
+        )
 
-    # print the JSON string of this publication
-    # pretty, 4-chars indented, sorted keys, entries with empty/null values removed
-    #print(p.json_string(pretty=True, indent=2, sort=True, clean=True))
+    def test_landmarks(self):
+        """
+        An EPUB2 document should not have landmarks
+        """
+        self.assertIsNone(self.publication.container.default_rendition.landmarks)
 
-    # print toc (default rendition)
-    # nav toc (if EPUB 3) or ncx toc (if EPUB 2)
-    #print(p.container.default_rendition.toc)
-
-    # print ncx toc (default rendition)
-    #print(p.container.default_rendition.ncx_toc)
-
-    # print landmarks (default rendition)
-    #print(p.container.default_rendition.landmarks)
-
-    # metadatum with id="aut"
-    #print(p.container.default_rendition.pac_document.metadata.metadatum_by_id("aut"))
+    def test_dc_subject_metadata(self):
+        self.skipTest("To implement")
 
     # dc:subject metadata
     #for metadatum in p.container.default_rendition.pac_document.metadata.metadata_by_tag(DC.E_NS_SUBJECT):
@@ -224,11 +184,3 @@ def main():
     #for i_p in i_p_assets:
     #    print("Spine index of        '%s' = %d" % (i_p, p.container.default_rendition.pac_document.spine_index_by_internal_path(i_p)))
     #    print("Linear spine index of '%s' = %d" % (i_p, p.container.default_rendition.pac_document.spine_linear_index_by_internal_path(i_p)))
-
-
-
-if __name__ == '__main__':
-    main()
-
-
-

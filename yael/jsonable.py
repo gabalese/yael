@@ -1,6 +1,4 @@
-#!/usr/bin/env python
 # coding=utf-8
-
 """
 A generic object which
 has a JSON object/string representation.
@@ -14,19 +12,16 @@ according to the suitable element semantics.
 """
 
 import json
+from abc import ABCMeta, abstractmethod
 
-__author__ = "Alberto Pettarin"
-__copyright__ = "Copyright 2015, Alberto Pettarin (www.albertopettarin.it)"
-__license__ = "MIT"
-__version__ = "0.0.9"
-__email__ = "alberto@albertopettarin.it"
-__status__ = "Development"
 
 class JSONAble(object):
     """
     A generic object which has a JSON object/string representation.
     """
+    __metaclass__ = ABCMeta
 
+    @abstractmethod
     def json_object(self, recursive=True):
         """
         To be implemented in concrete subclasses.
@@ -38,18 +33,10 @@ class JSONAble(object):
 
         """
 
-        return
-
     def __str__(self):
         return self.json_string(pretty=True)
 
-    def json_string(
-            self,
-            recursive=True,
-            pretty=False,
-            indent=4,
-            sort=False,
-            clean=False):
+    def json_string(self, recursive=True, pretty=False, indent=4, sort=False, clean=False):
         """
         Format a JSON string representation of the object.
 
@@ -72,16 +59,12 @@ class JSONAble(object):
         try:
             obj = self.json_object(recursive=recursive)
             if clean:
-                obj = JSONAble.clean(obj)
+                obj = self.clean(obj)
             if pretty:
-                return json.dumps(
-                    obj,
-                    sort_keys=sort,
-                    indent=indent,
-                    separators=(',', ': '))
+                return json.dumps(obj, sort_keys=sort, indent=indent, separators=(',', ': '))
             else:
                 return json.dumps(obj)
-        except:
+        except Exception:
             pass
         return "{}"
 
@@ -104,18 +87,16 @@ class JSONAble(object):
 
         """
 
-        if obj != None:
-            try:
-                if isinstance(obj, list):
-                    accumulator = []
-                    for obj_elem in obj:
-                        accumulator.append(JSONAble.safe(obj_elem))
-                    return accumulator
-                else:
-                    return obj.json_object()
-            except:
-                pass
-        return None
+        try:
+            if isinstance(obj, list):
+                accumulator = []
+                for obj_elem in obj:
+                    accumulator.append(JSONAble.safe(obj_elem))
+                return accumulator
+            else:
+                return obj.json_object()
+        except Exception:
+            return None
 
     # TODO find a better way of doing this
     @staticmethod
@@ -147,7 +128,7 @@ class JSONAble(object):
                 if value is None:
                     del obj[key]
                 elif isinstance(value, dict) or isinstance(value, list):
-                    if JSONAble.clean(value) == None:
+                    if JSONAble.clean(value) is None:
                         del obj[key]
         elif isinstance(obj, list):
             if len(obj) < 1:
@@ -156,12 +137,10 @@ class JSONAble(object):
             tmp = []
             for value in obj:
                 clean_value = JSONAble.clean(value)
-                if clean_value != None:
+                if clean_value is not None:
                     tmp.append(clean_value)
             if len(tmp) == 0:
                 obj = None
             else:
                 obj = tmp
         return obj
-
-

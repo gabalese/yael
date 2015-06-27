@@ -1,6 +1,4 @@
-#!/usr/bin/env python
 # coding=utf-8
-
 """
 A generic file/XML node element.
 
@@ -15,17 +13,10 @@ the abstract function
 to each concrete subclass,
 according to the suitable element semantics.
 """
-
 import lxml.etree
 
 from yael.jsonable import JSONAble
 
-__author__ = "Alberto Pettarin"
-__copyright__ = "Copyright 2015, Alberto Pettarin (www.albertopettarin.it)"
-__license__ = "MIT"
-__version__ = "0.0.9"
-__email__ = "alberto@albertopettarin.it"
-__status__ = "Development"
 
 class Element(JSONAble):
     """
@@ -51,20 +42,16 @@ class Element(JSONAble):
         elif obj != None:
             self.parse_object(obj)
 
-    def parse_string(self, string):
+    def parse_string(self, string_to_parse):
         """
         Build element by parsing the given string `string`.
 
-        :param string: a string representation to be parsed
-        :type  string: str
-
+        :param string_to_parse: a string representation to be parsed
+        :type  string_to_parse: str
         """
 
-        try:
-            root = lxml.etree.fromstring(string)
-            self.parse_object(root)
-        except:
-            raise Exception("Error while parsing the given string")
+        root = lxml.etree.fromstring(string_to_parse)
+        self.parse_object(root)
 
     def parse_object(self, obj):
         """

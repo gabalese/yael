@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 # coding=utf-8
 
 """
@@ -23,6 +23,9 @@ VP_PATTERN_WH = re.compile(r"^width[ ]*=[ ]*([0-9\.]*)[ px]*,[ ]*height[ ]*=[ ]*
 
 #: pattern to match viewport value `height=H, width=W`
 VP_PATTERN_HW = re.compile(r"^height[ ]*=[ ]*([0-9\.]*)[ px]*,[ ]*width[ ]*=[ ]*([0-9\.]*)[ px]*$")
+
+class ElementNotFoundException(Exception):
+    pass
 
 def directory_size(path):
     """
@@ -181,14 +184,14 @@ def query_xpath(obj, query, args, nsp, required=None, formatted_query=None):
 
     """
 
-    if formatted_query == None:
+    if formatted_query is None:
         xpath_query = query.format(*args)
     else:
         xpath_query = formatted_query
     result = obj.xpath(xpath_query, namespaces=nsp)
 
-    if (required != None) and (len(result) < 1):
-        raise Exception("Cannot find '%s' element" % required)
+    if (required is not None) and (len(result) < 1):
+        raise ElementNotFoundException("'%s'" % required)
 
     return result
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 # coding=utf-8
 
 """
@@ -20,41 +20,40 @@ class Parsing:
     by parsing a file or directory.
     """
 
+    # Resolve asset references. Default.
     ASSET_REFS = "asset_refs"
-    """ Resolve asset references. Default. """
 
+    # Do not resolve asset references.
     NO_ASSET_REFS = "no_asset_refs"
-    """ Do not resolve asset references. """
 
+    # Parse META-INF/encryption.xml, if present. Default.
     ENCRYPTION = "encryption"
-    """ Parse META-INF/encryption.xml, if present. Default. """
 
+    # Do not parse META-INF/encryption.xml.
     NO_ENCRYPTION = "no_encryption"
-    """ Do not parse META-INF/encryption.xml. """
 
+    # Parse the Media Overlay Documents (SMIL files), if present. Default.
     MEDIA_OVERLAY = "media_overlay"
-    """ Parse the Media Overlay Documents (SMIL files), if present. Default. """
 
+    # Do not parse the Media Overlay Documents (SMIL files).
     NO_MEDIA_OVERLAY = "no_media_overlay"
-    """ Do not parse the Media Overlay Documents (SMIL files). """
 
+    # Parse META-INF/metadata.xml and Multiple Renditions, if present. Default.
     MULTIPLE_RENDITIONS = "multiple_renditions"
-    """ Parse META-INF/metadata.xml and Multiple Renditions, if present.
-    Default. """
 
+    # Do not parse META-INF/metadata.xml and Multiple Renditions.
     NO_MULTIPLE_RENDITIONS = "no_multiple_renditions"
-    """ Do not parse META-INF/metadata.xml and Multiple Renditions. """
 
+    # Parse the NCX TOC, if present. Default.
     NCX = "ncx"
-    """ Parse the NCX TOC, if present. Default. """
 
+    # Do not parse the NCX TOC.
     NO_NCX = "no_ncx"
-    """ Do not parse the NCX TOC. """
 
+    # Parse the Navigation Document, if present. Default.
     NAV = "nav"
-    """ Parse the Navigation Document, if present. Default. """
 
+    # Do not parse the Navigation Document.
     NO_NAV = "no_nav"
-    """ Do not parse the Navigation Document. """
 
 
