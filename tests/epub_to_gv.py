@@ -19,7 +19,7 @@ import sys
 PROJECT_DIRECTORY = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
 sys.path.append(PROJECT_DIRECTORY)
-from yael import Parsing
+from yael import ParsingOptions
 from yael import Publication
 import yael.util
 
@@ -42,7 +42,7 @@ def main():
         # parsing MO is not necessary
         ebook = Publication(
             path=sys.argv[1],
-            parsing_options=[Parsing.NO_MEDIA_OVERLAY])
+            parsing_options=[ParsingOptions.NO_MEDIA_OVERLAY])
     else:
         # no arguments => print usage
         usage()

@@ -158,7 +158,7 @@ class Container(Element):
         full_path = obj.get(Container.A_FULL_PATH)
         media_type = obj.get(Container.A_MEDIA_TYPE)
 
-        if (full_path != None) and (media_type != None):
+        if (full_path is not None) and (media_type is not None):
             r_obj = Rendition(internal_path=full_path)
             r_obj.v_full_path = full_path
             r_obj.v_media_type = media_type
@@ -185,8 +185,6 @@ class Container(Element):
         media_type = obj.get(Container.A_MEDIA_TYPE)
         if ((rel == Container.V_REL_MAPPING) and
                 (media_type == MediaType.XHTML) and
-                (href != None)):
+                (href is not None)):
             self.rm_document = RenditionMappingDocument(internal_path=href)
         return None
-
-

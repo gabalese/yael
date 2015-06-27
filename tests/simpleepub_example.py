@@ -13,7 +13,7 @@ import sys
 PROJECT_DIRECTORY = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
 sys.path.append(PROJECT_DIRECTORY)
-from yael import Parsing
+from yael import ParsingOptions
 from yael import SimpleEPUB
 
 __author__ = "Alberto Pettarin"
@@ -33,7 +33,7 @@ def main():
     if (len(sys.argv) > 2) and (sys.argv[2] == "--no-mo"):
         p = SimpleEPUB(
             path=sys.argv[1],
-            parsing_options=[Parsing.NO_MEDIA_OVERLAY])
+            parsing_options=[ParsingOptions.NO_MEDIA_OVERLAY])
     elif len(sys.argv) > 1:
         p = SimpleEPUB(
             path=sys.argv[1],

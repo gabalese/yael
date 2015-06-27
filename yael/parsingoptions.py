@@ -1,18 +1,11 @@
-
 # coding=utf-8
 
 """
 Parsing option constants.
 """
 
-__author__ = "Alberto Pettarin"
-__copyright__ = "Copyright 2015, Alberto Pettarin (www.albertopettarin.it)"
-__license__ = "MIT"
-__version__ = "0.0.9"
-__email__ = "alberto@albertopettarin.it"
-__status__ = "Development"
 
-class Parsing:
+class ParsingOptions:
     """
     Enumeration of parsing option constants
     to be used when creating a

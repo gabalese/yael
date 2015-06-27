@@ -26,7 +26,7 @@ from yael.navdocument import NavDocument
 from yael.ncxtoc import NCXToc
 from yael.obfuscation import Obfuscation
 from yael.opfpacdocument import OPFPacDocument
-from yael.parsing import Parsing
+from yael.parsingoptions import ParsingOptions
 from yael.rmdocument import RenditionMappingDocument
 import yael.util
 
@@ -52,8 +52,8 @@ class Publication(JSONAble):
     """
 
     DEFAULT_PARSING_OPTIONS = (
-        Parsing.NO_MULTIPLE_RENDITIONS,
-        Parsing.NO_MEDIA_OVERLAY
+        ParsingOptions.NO_MULTIPLE_RENDITIONS,
+        ParsingOptions.NO_MEDIA_OVERLAY
     )
 
     def __init__(self, path=None, parsing_options=None):
@@ -188,9 +188,8 @@ class Publication(JSONAble):
         """
         try:
             return self.container.default_rendition.pac_document.v_version
-        except:
-            pass
-        return None
+        except Exception:
+            return None
 
     @property
     def unique_identifier(self):
@@ -209,14 +208,14 @@ class Publication(JSONAble):
 
         unique_identifier = None
         try:
-            if self.metadata != None:
+            if self.metadata is not None:
                 # use unique identifier from metadata.xml
                 unique_identifier = self.metadata.v_unique_identifier
             else:
                 # use unique identifier from default rendition
                 p_doc = self.container.default_rendition.pac_document
                 unique_identifier = p_doc.v_unique_identifier
-        except:
+        except Exception:
             pass
         return unique_identifier
 
@@ -224,17 +223,15 @@ class Publication(JSONAble):
     def dcterms_modified(self):
         """
         The last modification date/time of this Publication.
-
         :rtype:   str
-
         """
 
         dcterms_modified = None
         try:
-            if self.metadata != None:
+            if self.metadata is not None:
                 # use v_dcterms_modified from metadata.xml
                 dcterms_modified = self.metadata.v_dcterms_modified
-                if dcterms_modified != None:
+                if dcterms_modified is not None:
                     return dcterms_modified
             # use v_dcterms_modified from default rendition
             p_doc = self.container.default_rendition.pac_document
@@ -263,16 +260,16 @@ class Publication(JSONAble):
 
         release_identifier = self.unique_identifier
         try:
-            if self.metadata != None:
+            if self.metadata is not None:
                 release_identifier = self.metadata.v_release_identifier
             else:
                 dcterms_modified = self.dcterms_modified
-                if dcterms_modified != None:
+                if dcterms_modified is not None:
                     release_identifier += "@" + dcterms_modified
         except:
             pass
         # the spec requires stripping spaces
-        if release_identifier != None:
+        if release_identifier is not None:
             release_identifier = release_identifier.replace(" ", "")
         return release_identifier
 
@@ -287,8 +284,7 @@ class Publication(JSONAble):
             pac_document = self.container.default_rendition.pac_document
             return pac_document.internal_path_cover_image
         except:
-            pass
-        return None
+            return None
 
     def parse(self):
         """
@@ -296,7 +292,7 @@ class Publication(JSONAble):
         """
 
         # add mimetype
-        internal_path_mimetype = EPUB.INTERNAL_PATH_MIMETYPE
+        internal_path_mimetype = EPUB.INTERNAL_PATHS.MIMETYPE
         mimetype_asset = Asset(absolute_path=self.path,
                                relative_path=internal_path_mimetype,
                                internal_path=internal_path_mimetype)
@@ -304,7 +300,7 @@ class Publication(JSONAble):
         self.assets[internal_path_mimetype] = mimetype_asset
 
         # parse container.xml (required)
-        internal_path_container = EPUB.INTERNAL_PATH_CONTAINER_XML
+        internal_path_container = EPUB.INTERNAL_PATHS.CONTAINER_XML
         container_asset = Asset(absolute_path=self.path,
                                 relative_path=internal_path_container,
                                 internal_path=internal_path_container)
@@ -323,8 +319,8 @@ class Publication(JSONAble):
         # TODO parse: signatures.xml
 
     def parse_renditions(self):
-        if (Parsing.MULTIPLE_RENDITIONS in self.parsing_options) or \
-                (Parsing.NO_MULTIPLE_RENDITIONS not in self.parsing_options):
+        if (ParsingOptions.MULTIPLE_RENDITIONS in self.parsing_options) or \
+                (ParsingOptions.NO_MULTIPLE_RENDITIONS not in self.parsing_options):
             self.parse_multiple_renditions()
 
             # parse all renditions
@@ -339,9 +335,9 @@ class Publication(JSONAble):
         """
         Parse `META-INF/encryption.xml`.
         """
-        if Parsing.ENCRYPTION in self.parsing_options or \
-                        Parsing.NO_ENCRYPTION not in self.parsing_options:
-            i_p_encryption = EPUB.INTERNAL_PATH_ENCRYPTION_XML
+        if ParsingOptions.ENCRYPTION in self.parsing_options or \
+                        ParsingOptions.NO_ENCRYPTION not in self.parsing_options:
+            i_p_encryption = EPUB.INTERNAL_PATHS.ENCRYPTION_XML
             encryption_a = Asset(
                 absolute_path=self.path,
                 relative_path=i_p_encryption,
@@ -370,7 +366,7 @@ class Publication(JSONAble):
         """
         Parse `META-INF/metadata.xml` and Multiple Renditions.
         """
-        metadata_path = EPUB.INTERNAL_PATH_METADATA_XML
+        metadata_path = EPUB.INTERNAL_PATHS.METADATA_XML
 
         metadata_asset = Asset(absolute_path=self.path,
                                relative_path=metadata_path,
@@ -418,8 +414,8 @@ class Publication(JSONAble):
 
             # add one asset for each manifest item
             if (
-                        (Parsing.ASSET_REFS in self.parsing_options) or
-                        (not Parsing.NO_ASSET_REFS in self.parsing_options)):
+                        (ParsingOptions.ASSET_REFS in self.parsing_options) or
+                        (not ParsingOptions.NO_ASSET_REFS in self.parsing_options)):
                 for item in opf.manifest.items:
                     i_p_item = yael.util.norm_join_parent(i_p_opf, item.v_href)
                     asset = Asset(
@@ -431,8 +427,8 @@ class Publication(JSONAble):
 
             # parse Navigation Document
             if (
-                        (Parsing.NAV in self.parsing_options) or
-                        (not Parsing.NO_NAV in self.parsing_options)):
+                        (ParsingOptions.NAV in self.parsing_options) or
+                        (not ParsingOptions.NO_NAV in self.parsing_options)):
                 i_p_nav = opf.internal_path_nav_document
                 if i_p_nav != None:
                     nav_a = Asset(
@@ -448,8 +444,8 @@ class Publication(JSONAble):
 
             # parse NCX
             if (
-                        (Parsing.NCX in self.parsing_options) or
-                        (not Parsing.NO_NCX in self.parsing_options)):
+                        (ParsingOptions.NCX in self.parsing_options) or
+                        (not ParsingOptions.NO_NCX in self.parsing_options)):
                 i_p_ncx = opf.internal_path_ncx_toc
                 if i_p_ncx != None:
                     ncx_a = Asset(
@@ -465,8 +461,8 @@ class Publication(JSONAble):
 
             # parse Media Overlay Documents
             if (
-                        (Parsing.MEDIA_OVERLAY in self.parsing_options) or
-                        (not Parsing.NO_MEDIA_OVERLAY in self.parsing_options)):
+                        (ParsingOptions.MEDIA_OVERLAY in self.parsing_options) or
+                        (not ParsingOptions.NO_MEDIA_OVERLAY in self.parsing_options)):
                 for smil_item in opf.manifest.mo_document_items:
                     smil_item_parsed = None
                     try:

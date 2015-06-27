@@ -1,4 +1,3 @@
-
 # coding=utf-8
 
 """
@@ -44,7 +43,7 @@ from yael.opfpacdocument import OPFPacDocument
 from yael.opfreference import OPFReference
 from yael.opfspine import OPFSpine
 from yael.pacdocument import PacDocument
-from yael.parsing import Parsing
+from yael.parsingoptions import ParsingOptions
 from yael.publication import Publication
 from yael.rendition import Rendition
 from yael.rmdocument import RenditionMappingDocument
@@ -52,10 +51,3 @@ from yael.rmlocation import RMLocation
 from yael.rmpoint import RMPoint
 from yael.simpleepub import SimpleEPUB
 import yael.util
-
-__author__ = "Alberto Pettarin"
-__copyright__ = "Copyright 2015, Alberto Pettarin (www.albertopettarin.it)"
-__license__ = "MIT"
-__version__ = "0.0.9"
-__email__ = "alberto@albertopettarin.it"
-__status__ = "Development"

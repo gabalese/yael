@@ -16,7 +16,7 @@ you should use :class:`yael.publication.Publication` instead.
 from yael.dc import DC
 from yael.navnode import NavNode
 from yael.ncxtocnode import NCXTocNode
-from yael.parsing import Parsing
+from yael.parsingoptions import ParsingOptions
 from yael.publication import Publication
 import yael.util
 
@@ -42,7 +42,7 @@ class SimpleEPUB(object):
         self.path = path
         self.parsing_options = parsing_options
         if parsing_options == None:
-            self.parsing_options = [Parsing.NO_MEDIA_OVERLAY]
+            self.parsing_options = [ParsingOptions.NO_MEDIA_OVERLAY]
         self.ebook = Publication(
             path=self.path,
             parsing_options=self.parsing_options)

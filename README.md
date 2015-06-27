@@ -14,6 +14,10 @@ Please do **NOT** use this code in production until it reaches v1.0.0.
 Feedback (especially on the lib interface) is welcome at any version number!
 (Please use the [GitHub issue tracker](https://github.com/pettarin/yael/issues).)
 
+## Testing
+
+- Install `requirements.txt`
+- Simply execute `py.test`
 
 ## Usage
 
