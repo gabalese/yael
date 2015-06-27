@@ -8,7 +8,7 @@ for reading, manipulating, and writing EPUB 2/3 files.
 from yael.asset import Asset
 from yael.container import Container
 from yael.dc import DC
-from yael.element import Element
+from yael.document import Document
 from yael.encryption import Encryption
 from yael.enckey import EncKey
 from yael.epub import EPUB
@@ -24,7 +24,7 @@ from yael.moseq import MOSeq
 from yael.motext import MOText
 from yael.namespace import Namespace
 from yael.navdocument import NavDocument
-from yael.navelement import NavElement
+from yael.navelement import NavDocument
 from yael.navnode import NavNode
 from yael.ncxtoc import NCXToc
 from yael.ncxtocnode import NCXTocNode

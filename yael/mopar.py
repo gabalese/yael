@@ -11,7 +11,7 @@ both a `<text>` (:class:`yael.motext.MOText`)
 and an `<audio>` (:class:`yael.moaudio.MOAudio`) children.
 """
 
-from yael.element import Element
+from yael.document import Document
 from yael.jsonable import JSONAble
 from yael.moaudio import MOAudio
 from yael.motext import MOText
@@ -24,7 +24,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class MOPar(Element):
+class MOPar(Document):
     """
     Build a Media Overlay `<par>` element or
     parse it from `obj` or `string`.
@@ -42,7 +42,7 @@ class MOPar(Element):
         self.v_epub_type = None
         self.v_id = None
         self.children = []
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

@@ -5,7 +5,7 @@
 An OPF `<item>` element, that is, a child of the `<manifest>`.
 """
 
-from yael.element import Element
+from yael.document import Document
 from yael.jsonable import JSONAble
 
 __author__ = "Alberto Pettarin"
@@ -15,7 +15,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class OPFItem(Element):
+class OPFItem(Document):
     """
     Build an OPF `<item>` element or
     parse it from `obj` or `string`.
@@ -43,7 +43,7 @@ class OPFItem(Element):
         self.v_media_type = None
         self.v_properties = None
         self.refinements = []
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

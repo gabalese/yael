@@ -11,7 +11,7 @@ It has three subclasses:
 3. :class:`yael.opfmeta3.OPFMeta3`
 """
 
-from yael.element import Element
+from yael.document import Document
 from yael.jsonable import JSONAble
 
 __author__ = "Alberto Pettarin"
@@ -21,7 +21,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class OPFMetadatum(Element):
+class OPFMetadatum(Document):
     """
     An abstract OPF metadatum, that is, a child of `<metadata>`.
 
@@ -36,7 +36,7 @@ class OPFMetadatum(Element):
 
     def __init__(self, internal_path=None, obj=None, string=None):
         self.refinements = []
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

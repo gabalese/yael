@@ -5,7 +5,7 @@
 An EPUB 3 Multiple Renditions Rendition Mapping Location.
 """
 
-from yael.element import Element
+from yael.document import Document
 from yael.jsonable import JSONAble
 from yael.namespace import Namespace
 from yael.rmpoint import RMPoint
@@ -18,7 +18,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class RMLocation(Element):
+class RMLocation(Document):
     """
     Build an EPUB 3 Multiple Renditions Rendition Mapping Location or
     parse it from `obj` or `string`.
@@ -29,7 +29,7 @@ class RMLocation(Element):
 
     def __init__(self, internal_path=None, obj=None, string=None):
         self.points = []
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

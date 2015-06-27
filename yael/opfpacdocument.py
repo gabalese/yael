@@ -1,4 +1,3 @@
-
 # coding=utf-8
 
 """
@@ -15,12 +14,6 @@ from yael.opfspine import OPFSpine
 from yael.pacdocument import PacDocument
 import yael.util
 
-__author__ = "Alberto Pettarin"
-__copyright__ = "Copyright 2015, Alberto Pettarin (www.albertopettarin.it)"
-__license__ = "MIT"
-__version__ = "0.0.9"
-__email__ = "alberto@albertopettarin.it"
-__status__ = "Development"
 
 class OPFPacDocument(PacDocument):
     """
@@ -56,8 +49,8 @@ class OPFPacDocument(PacDocument):
         self.manifest = None
         self.spine = None
         self.guide = None
-        self.bindings = None # TODO currently not parsed
-        self.collection = None # TODO currently not parsed
+        self.bindings = None  # TODO currently not parsed
+        self.collection = None  # TODO currently not parsed
         PacDocument.__init__(
             self,
             internal_path=internal_path,
@@ -66,18 +59,18 @@ class OPFPacDocument(PacDocument):
 
     def json_object(self, recursive=True):
         opf = {
-            "dir":               self.v_dir,
-            "id":                self.v_id,
-            "prefix":            self.v_prefix,
+            "dir": self.v_dir,
+            "id": self.v_id,
+            "prefix": self.v_prefix,
             "unique_identifier": self.v_unique_identifier,
-            "version":           self.v_version,
-            "xml_lang":          self.v_xml_lang,
-            "metadata":          (self.metadata == None),
-            "manifest":          (self.manifest == None),
-            "spine":             (self.spine == None),
-            "guide":             (self.guide == None),
-            "bindings":          (self.bindings == None),
-            "collection":        (self.collection == None),
+            "version": self.v_version,
+            "xml_lang": self.v_xml_lang,
+            "metadata": (self.metadata == None),
+            "manifest": (self.manifest == None),
+            "spine": (self.spine == None),
+            "guide": (self.guide == None),
+            "bindings": (self.bindings == None),
+            "collection": (self.collection == None),
         }
         if recursive:
             opf["metadata"] = JSONAble.safe(self.metadata)
@@ -114,7 +107,7 @@ class OPFPacDocument(PacDocument):
             obj=manifest_arr[0],
             internal_path=self.internal_path)
 
-        #locate `<metadata>` element
+        # locate `<metadata>` element
         metadata_arr = yael.util.query_xpath(
             obj=package,
             query="{0}:{1}",
@@ -300,7 +293,7 @@ class OPFPacDocument(PacDocument):
         :rtype: list of str
         """
 
-        #return self.filtered_files_referenced_manifest(filter_function=None)
+        # return self.filtered_files_referenced_manifest(filter_function=None)
         try:
             accumulator = []
             for item in self.manifest.items:
@@ -313,7 +306,7 @@ class OPFPacDocument(PacDocument):
             pass
         return []
 
-    #def filtered_files_referenced_manifest(self, filter_function):
+    # def filtered_files_referenced_manifest(self, filter_function):
     #    """
     #    The list of files referenced in the OPF <manifest>
     #    matching the given filterFunction(e), where e is a OPFItem.
@@ -578,5 +571,3 @@ class OPFPacDocument(PacDocument):
     @collection.setter
     def collection(self, collection):
         self.__collection = collection
-
-

@@ -5,7 +5,7 @@
 A Media Overlay `<audio>` element.
 """
 
-from yael.element import Element
+from yael.document import Document
 import yael.util
 
 __author__ = "Alberto Pettarin"
@@ -15,7 +15,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class MOAudio(Element):
+class MOAudio(Document):
     """
     Build a Media Overlay `<audio>` element or
     parse it from `obj` or `string`.
@@ -31,7 +31,7 @@ class MOAudio(Element):
         self.v_clip_end = None
         self.v_id = None
         self.v_src = None
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

@@ -7,7 +7,7 @@ information about encrypted/obfuscated assets.
 """
 
 from yael.jsonable import JSONAble
-from yael.element import Element
+from yael.document import Document
 from yael.encdata import EncData
 from yael.enckey import EncKey
 from yael.namespace import Namespace
@@ -20,7 +20,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class Encryption(Element):
+class Encryption(Document):
     """
     Build the `META-INF/encryption.xml` file or
     parse it from `obj` or `string`.
@@ -33,7 +33,7 @@ class Encryption(Element):
     def __init__(self, internal_path=None, obj=None, string=None):
         self.encrypted_datas = []
         self.encrypted_keys = []
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

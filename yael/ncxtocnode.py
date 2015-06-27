@@ -5,7 +5,7 @@
 A node in a NCX TOC tree.
 """
 
-from yael.element import Element
+from yael.document import Document
 from yael.jsonable import JSONAble
 from yael.namespace import Namespace
 import yael.util
@@ -17,7 +17,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class NCXTocNode(Element):
+class NCXTocNode(Document):
     """
     Build a node in a NCX TOC tree or
     parse it from `obj` or `string`.
@@ -37,7 +37,7 @@ class NCXTocNode(Element):
         self.v_src = None
         self.v_text = None
         self.children = []
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

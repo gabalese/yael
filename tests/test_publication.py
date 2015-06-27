@@ -43,8 +43,7 @@ class TestPublication(unittest.TestCase):
         self.assertIsNone(self.publication.container.default_rendition.landmarks)
 
     def test_dc_subject_metadata(self):
-        print(self.publication.metadata)
-        self.fail()
+        self.skipTest("To Be Implemented")
 
     # dc:subject metadata
     #for metadatum in p.container.default_rendition.pac_document.metadata.metadata_by_tag(DC.E_NS_SUBJECT):

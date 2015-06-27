@@ -2,16 +2,15 @@
 
 """
 The `META-INF/metadata.xml` file, holding
-the publication-wise metadata
-(EPUB 3).
+the publication-wise metadata (EPUB 3).
 """
 
-from yael.element import Element
+from yael.document import Document
 from yael.namespace import Namespace
 import yael.util
 
 
-class Metadata(Element):
+class Metadata(Document):
     """
     Build the `META-INF/metadata.xml` file or
     parse it from `obj` or `string`.

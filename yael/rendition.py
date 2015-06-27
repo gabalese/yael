@@ -10,11 +10,11 @@ An abstract Rendition, holding:
 
 """
 from abc import ABCMeta, abstractmethod
-from yael.element import Element
+from yael.document import Document
 from yael.jsonable import JSONAble
 
 
-class Rendition(Element):
+class Rendition(Document):
     """
     Build an abstract Rendition or
     parse it from `obj` or `string`.
@@ -247,7 +247,7 @@ class Rendition(Element):
         The landmarks `<nav>` associated with this Rendition,
         or None if not present.
 
-        :rtype: :class:`yael.navelement.NavElement`
+        :rtype: :class:`yael.navelement.NavDocument`
         """
         try:
             return self.nav_document.landmarks

@@ -5,7 +5,7 @@
 An OPF `<itemref>` element, that is, a child of the `<spine>`.
 """
 
-from yael.element import Element
+from yael.document import Document
 
 __author__ = "Alberto Pettarin"
 __copyright__ = "Copyright 2015, Alberto Pettarin (www.albertopettarin.it)"
@@ -14,7 +14,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class OPFItemref(Element):
+class OPFItemref(Document):
     """
     Build an OPF `<itemref>` element or
     parse it from `obj` or `string`.
@@ -48,7 +48,7 @@ class OPFItemref(Element):
         self.v_idref = None
         self.v_linear = None
         self.v_properties = None
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

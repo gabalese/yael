@@ -6,7 +6,7 @@ The `META-INF/container.xml` file, storing:
 2. the Rendition Mapping Document
 """
 
-from yael.element import Element
+from yael.document import Document
 from yael.jsonable import JSONAble
 from yael.mediatype import MediaType
 from yael.namespace import Namespace
@@ -15,7 +15,7 @@ from yael.rmdocument import RenditionMappingDocument
 import yael.util
 
 
-class Container(Element):
+class Container(Document):
     """
     Build the `META-INF/container.xml` file
     or parse it from `string` or `obj`.
@@ -50,7 +50,7 @@ class Container(Element):
     def __init__(self, internal_path=None, obj=None, string=None):
         self.renditions = []
         self.rm_document = None
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

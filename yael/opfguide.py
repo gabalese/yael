@@ -5,7 +5,7 @@
 An OPF `<guide>` element.
 """
 
-from yael.element import Element
+from yael.document import Document
 from yael.jsonable import JSONAble
 from yael.namespace import Namespace
 from yael.opfreference import OPFReference
@@ -18,7 +18,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class OPFGuide(Element):
+class OPFGuide(Document):
     """
     Build an OPF `<guide>` element or
     parse it from `obj` or `string`.
@@ -30,7 +30,7 @@ class OPFGuide(Element):
     def __init__(self, internal_path=None, obj=None, string=None):
         self.v_id = None
         self.references = []
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

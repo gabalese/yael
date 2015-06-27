@@ -6,7 +6,7 @@ The OPF `<metadata>` element.
 """
 
 from yael.dc import DC
-from yael.element import Element
+from yael.document import Document
 from yael.jsonable import JSONAble
 from yael.namespace import Namespace
 from yael.opflink import OPFLink
@@ -22,7 +22,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class OPFMetadata(Element):
+class OPFMetadata(Document):
     """
     Build the OPF `<metadata>` element or
     parse it from `obj` or `string`.
@@ -47,7 +47,7 @@ class OPFMetadata(Element):
         self.v_xml_lang = None
         self.links = []
         self.metadata = []
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

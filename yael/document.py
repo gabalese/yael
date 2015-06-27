@@ -18,7 +18,7 @@ import lxml.etree
 from yael.jsonable import JSONAble
 
 
-class Element(JSONAble):
+class Document(JSONAble):
     """
     Build a generic file/XML element,
     or parse it from `obj` or `string`.
@@ -34,12 +34,15 @@ class Element(JSONAble):
 
     """
 
+    def json_object(self, recursive=True):
+        return super().json_object(recursive=True)
+
     def __init__(self, internal_path=None, obj=None, string=None):
         self.asset = None
         self.internal_path = internal_path
-        if string != None:
+        if string is not None:
             self.parse_string(string)
-        elif obj != None:
+        elif obj is not None:
             self.parse_object(obj)
 
     def parse_string(self, string_to_parse):
@@ -61,7 +64,6 @@ class Element(JSONAble):
         :type  obj: object
 
         """
-
         return
 
     @property
@@ -101,7 +103,7 @@ class Element(JSONAble):
 
         :rtype: bytes
         """
-        if self.asset != None:
+        if self.asset is not None:
             return self.asset.contents
 
 

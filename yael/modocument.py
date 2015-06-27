@@ -5,7 +5,7 @@
 A Media Overlay Document (SMIL file).
 """
 
-from yael.element import Element
+from yael.document import Document
 from yael.jsonable import JSONAble
 from yael.moaudio import MOAudio
 from yael.mopar import MOPar
@@ -21,7 +21,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class MODocument(Element):
+class MODocument(Document):
     """
     Build a Media Overlay Document (SMIL file) or
     parse it from `obj` or `string`.
@@ -41,7 +41,7 @@ class MODocument(Element):
         self.v_version = None
         self.head = None # TODO currently not parsed
         self.body = None
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

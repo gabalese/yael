@@ -32,6 +32,7 @@ class JSONAble(object):
         :rtype:           dict
 
         """
+        raise NotImplementedError()
 
     def __str__(self):
         return self.json_string(pretty=True)

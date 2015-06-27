@@ -7,7 +7,7 @@ A `<enc:EncryptedData>` element.
 Note: this class might be incomplete and/or need refactoring.
 """
 
-from yael.element import Element
+from yael.document import Document
 from yael.namespace import Namespace
 import yael.util
 
@@ -18,7 +18,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class EncData(Element):
+class EncData(Document):
     """
     Build a `<enc:EncryptedData>` element or
     parse it from `obj` or `string`.
@@ -42,7 +42,7 @@ class EncData(Element):
         self.v_id = None
         self.v_retrieval_method_type = None
         self.v_retrieval_method_uri = None
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

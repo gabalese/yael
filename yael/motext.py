@@ -5,7 +5,7 @@
 A Media Overlay `<text>` element.
 """
 
-from yael.element import Element
+from yael.document import Document
 
 __author__ = "Alberto Pettarin"
 __copyright__ = "Copyright 2015, Alberto Pettarin (www.albertopettarin.it)"
@@ -14,7 +14,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class MOText(Element):
+class MOText(Document):
     """
     Build a Media Overlay `<text>` element or
     parse it from `obj` or `string`.
@@ -26,7 +26,7 @@ class MOText(Element):
     def __init__(self, internal_path=None, obj=None, string=None):
         self.v_id = None
         self.v_src = None
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

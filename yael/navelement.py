@@ -5,7 +5,7 @@
 A `<nav>` element in the Navigation Document.
 """
 
-from yael.element import Element
+from yael.document import Document
 from yael.jsonable import JSONAble
 from yael.namespace import Namespace
 from yael.navnode import NavNode
@@ -18,7 +18,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class NavElement(Element):
+class NavDocument(Document):
     """
     Build a `<nav>` element in the Navigation Document
     or parse it from `obj` or `string`.
@@ -36,7 +36,7 @@ class NavElement(Element):
         self.v_id = None
         self.children = []
         self.title = None
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,
@@ -55,12 +55,12 @@ class NavElement(Element):
         return obj
 
     def parse_object(self, obj):
-        self.v_epub_type = obj.get(NavElement.A_NS_EPUB_TYPE)
-        self.v_id = obj.get(NavElement.A_ID)
+        self.v_epub_type = obj.get(NavDocument.A_NS_EPUB_TYPE)
+        self.v_id = obj.get(NavDocument.A_ID)
 
         # parse title (if any)
         # it can be any `<h1>` ... `<h6>` element
-        for h_elem in NavElement.E_HX:
+        for h_elem in NavDocument.E_HX:
             h_arr = yael.util.query_xpath(
                 obj=obj,
                 query="{0}:{1}",
@@ -75,7 +75,7 @@ class NavElement(Element):
         li_arr = yael.util.query_xpath(
             obj=obj,
             query="{0}:{1}/{0}:{2}",
-            args=["x", NavElement.E_OL, NavElement.E_LI],
+            args=["x", NavDocument.E_OL, NavDocument.E_LI],
             nsp={"x": Namespace.XHTML},
             required=None)
         for li_elem in li_arr:

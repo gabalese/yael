@@ -5,7 +5,7 @@
 An OPF `<link>` element, that is, a child of the `<metadata>`.
 """
 
-from yael.element import Element
+from yael.document import Document
 
 __author__ = "Alberto Pettarin"
 __copyright__ = "Copyright 2015, Alberto Pettarin (www.albertopettarin.it)"
@@ -14,7 +14,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class OPFLink(Element):
+class OPFLink(Document):
     """
     Build an OPF `<link>` element or
     parse it from `obj` or `string`.
@@ -32,7 +32,7 @@ class OPFLink(Element):
         self.v_media_type = None
         self.v_refines = None
         self.v_rel = None
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

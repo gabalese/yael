@@ -5,7 +5,7 @@
 The OPF `<manifest>` element.
 """
 
-from yael.element import Element
+from yael.document import Document
 from yael.jsonable import JSONAble
 from yael.mediatype import MediaType
 from yael.namespace import Namespace
@@ -19,7 +19,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class OPFManifest(Element):
+class OPFManifest(Document):
     """
     Build the OPF `<manifest>` element or
     parse it from `obj` or `string`.
@@ -31,7 +31,7 @@ class OPFManifest(Element):
     def __init__(self, internal_path=None, obj=None, string=None):
         self.v_id = None
         self.items = []
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

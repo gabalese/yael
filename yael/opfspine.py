@@ -5,7 +5,7 @@
 The OPF `<spine>` element.
 """
 
-from yael.element import Element
+from yael.document import Document
 from yael.jsonable import JSONAble
 from yael.namespace import Namespace
 from yael.opfitemref import OPFItemref
@@ -18,7 +18,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class OPFSpine(Element):
+class OPFSpine(Document):
     """
     Build the OPF `<spine>` element or
     parse it from `obj` or `string`.
@@ -35,7 +35,7 @@ class OPFSpine(Element):
         self.v_ppd = None
         self.v_toc = None
         self.itemrefs = []
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

@@ -5,7 +5,7 @@
 An OPF `<reference>` element, that is, a child of the `<guide>`.
 """
 
-from yael.element import Element
+from yael.document import Document
 
 __author__ = "Alberto Pettarin"
 __copyright__ = "Copyright 2015, Alberto Pettarin (www.albertopettarin.it)"
@@ -14,7 +14,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class OPFReference(Element):
+class OPFReference(Document):
     """
     Build an OPF `<reference>` element or
     parse it from `obj` or `string`.
@@ -47,7 +47,7 @@ class OPFReference(Element):
         self.v_id = None
         self.v_title = None
         self.v_type = None
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

@@ -7,7 +7,7 @@ A `<enc:EncryptedKey>` element.
 Note: this class might be incomplete and/or need refactoring.
 """
 
-from yael.element import Element
+from yael.document import Document
 from yael.namespace import Namespace
 import yael.util
 
@@ -18,7 +18,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class EncKey(Element):
+class EncKey(Document):
     """
     Build a `<enc:EncryptedKey>` element or
     parse it from `obj` or `string`.
@@ -38,7 +38,7 @@ class EncKey(Element):
         self.v_encryption_method_algorithm = None
         self.v_id = None
         self.v_key_name = None
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

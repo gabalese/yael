@@ -5,7 +5,7 @@
 A `<li>` node inside a `<nav>` tree.
 """
 
-from yael.element import Element
+from yael.document import Document
 from yael.jsonable import JSONAble
 from yael.namespace import Namespace
 import yael.util
@@ -17,7 +17,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class NavNode(Element):
+class NavNode(Document):
     """
     Build a `<li>` node inside a `<nav>` tree or
     parse it from `obj` or `string`.
@@ -38,7 +38,7 @@ class NavNode(Element):
         self.v_id = None
         self.v_label = None
         self.children = []
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

@@ -5,7 +5,7 @@
 An EPUB 3 Multiple Renditions Rendition Mapping Point.
 """
 
-from yael.element import Element
+from yael.document import Document
 from yael.namespace import Namespace
 
 __author__ = "Alberto Pettarin"
@@ -15,7 +15,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class RMPoint(Element):
+class RMPoint(Document):
     """
     Build an EPUB 3 Multiple Renditions Rendition Mapping Point or
     parse it from `obj` or `string`.
@@ -30,7 +30,7 @@ class RMPoint(Element):
     def __init__(self, internal_path=None, obj=None, string=None):
         self.v_epub_rendition = None
         self.v_href = None
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,

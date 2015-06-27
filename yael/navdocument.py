@@ -7,10 +7,10 @@ A representation of the Navigation Document.
 Basically, it is a collection of `<nav>` (NavElement) objects.
 """
 
-from yael.element import Element
+from yael.document import Document
 from yael.jsonable import JSONAble
 from yael.namespace import Namespace
-from yael.navelement import NavElement
+from yael.navelement import NavDocument
 import yael.util
 
 __author__ = "Alberto Pettarin"
@@ -20,7 +20,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class NavDocument(Element):
+class NavDocument(Document):
     """
     Build the Navigation Document or
     parse it from `obj` or `string`.
@@ -37,7 +37,7 @@ class NavDocument(Element):
 
     def __init__(self, internal_path=None, obj=None, string=None):
         self.navs = []
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,
@@ -62,7 +62,7 @@ class NavDocument(Element):
         for nav in nav_arr:
             nav_parsed = None
             try:
-                nav_parsed = NavElement(
+                nav_parsed = NavDocument(
                     internal_path=self.internal_path,
                     obj=nav)
             except:

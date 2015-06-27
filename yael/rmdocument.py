@@ -4,14 +4,14 @@
 The EPUB 3 Multiple Renditions Rendition Mapping Document.
 """
 
-from yael.element import Element
+from yael.document import Document
 from yael.jsonable import JSONAble
 from yael.namespace import Namespace
 from yael.rmlocation import RMLocation
 import yael.util
 
 
-class RenditionMappingDocument(Element):
+class RenditionMappingDocument(Document):
     """
     Build the EPUB 3 Multiple Renditions Rendition Mapping Document or
     parse it from `obj` or `string`.

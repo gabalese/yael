@@ -12,7 +12,7 @@ This class is here in case future EPUB specifications
 will allow different Package Document formats.
 """
 
-from yael.element import Element
+from yael.document import Document
 
 __author__ = "Alberto Pettarin"
 __copyright__ = "Copyright 2015, Alberto Pettarin (www.albertopettarin.it)"
@@ -21,7 +21,7 @@ __version__ = "0.0.9"
 __email__ = "alberto@albertopettarin.it"
 __status__ = "Development"
 
-class PacDocument(Element):
+class PacDocument(Document):
     """
     An abstract Package Document.
 
@@ -33,7 +33,7 @@ class PacDocument(Element):
 
     def __init__(self, internal_path=None, obj=None, string=None):
         self.v_unique_identifier = None
-        Element.__init__(
+        Document.__init__(
             self,
             internal_path=internal_path,
             obj=obj,
