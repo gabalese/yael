@@ -5,7 +5,7 @@
 The OPF `<metadata>` element.
 """
 
-from yael.dc import DC
+from yael.dublincore import DublinCore
 from yael.document import Document
 from yael.jsonable import JSONAble
 from yael.namespace import Namespace
@@ -59,7 +59,7 @@ class OPFMetadata(Document):
         self.v_xml_lang = obj.get(OPFMetadata.A_NS_LANG)
 
         # locate `<dc:...>` elements
-        for element in DC.ALL_ELEMENTS:
+        for element in DublinCore.ALL_ELEMENTS:
             dc_arr = yael.util.query_xpath(
                 obj=obj,
                 query="{0}:{1}",
@@ -200,7 +200,7 @@ class OPFMetadata(Document):
         """
         for metadatum in self.metadata:
             if (isinstance(metadatum, OPFMeta3) and
-                    (metadatum.v_property == DC.V_DCTERMS_MODIFIED)):
+                    (metadatum.v_property == DublinCore.V_DCTERMS_MODIFIED)):
                 return  metadatum.v_text
         return None
 

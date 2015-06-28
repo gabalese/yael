@@ -12,7 +12,7 @@ If you need Multiple Renditions or more control,
 you should use :class:`yael.publication.Publication` instead.
 """
 
-from yael.dc import DC
+from yael.dublincore import DublinCore
 from yael.navnode import NavNode
 from yael.ncxtocnode import NCXTocNode
 from yael.parsingoptions import ParsingOptions
@@ -114,7 +114,7 @@ class SimpleEPUB(object):
 
         :rtype: str
         """
-        return self.get_dc_metadatum(tag=DC.E_NS_IDENTIFIER)
+        return self.get_dc_metadatum(tag=DublinCore.NS_IDENTIFIER)
 
     @property
     def title(self):
@@ -123,7 +123,7 @@ class SimpleEPUB(object):
 
         :rtype: str
         """
-        return self.get_dc_metadatum(tag=DC.E_NS_TITLE)
+        return self.get_dc_metadatum(tag=DublinCore.NS_TITLE)
 
     @property
     def language(self):
@@ -132,7 +132,7 @@ class SimpleEPUB(object):
 
         :rtype: str
         """
-        return self.get_dc_metadatum(tag=DC.E_NS_LANGUAGE)
+        return self.get_dc_metadatum(tag=DublinCore.NS_LANGUAGE)
 
     @property
     def author(self):
@@ -141,7 +141,7 @@ class SimpleEPUB(object):
 
         :rtype: str
         """
-        return self.get_dc_metadatum(tag=DC.E_NS_CREATOR)
+        return self.get_dc_metadatum(tag=DublinCore.NS_CREATOR)
 
     @property
     def date(self):
@@ -150,7 +150,7 @@ class SimpleEPUB(object):
 
         :rtype: str
         """
-        return self.get_dc_metadatum(tag=DC.E_NS_DATE)
+        return self.get_dc_metadatum(tag=DublinCore.NS_DATE)
 
     @property
     def description(self):
@@ -159,7 +159,7 @@ class SimpleEPUB(object):
 
         :rtype: str
         """
-        return self.get_dc_metadatum(tag=DC.E_NS_DESCRIPTION)
+        return self.get_dc_metadatum(tag=DublinCore.NS_DESCRIPTION)
 
     @property
     def publisher(self):
@@ -168,7 +168,7 @@ class SimpleEPUB(object):
 
         :rtype: str
         """
-        return self.get_dc_metadatum(tag=DC.E_NS_PUBLISHER)
+        return self.get_dc_metadatum(tag=DublinCore.NS_PUBLISHER)
 
     @property
     def rights(self):
@@ -177,7 +177,7 @@ class SimpleEPUB(object):
 
         :rtype: str
         """
-        return self.get_dc_metadatum(tag=DC.E_NS_RIGHTS)
+        return self.get_dc_metadatum(tag=DublinCore.NS_RIGHTS)
 
     @property
     def source(self):
@@ -186,7 +186,7 @@ class SimpleEPUB(object):
 
         :rtype: str
         """
-        return self.get_dc_metadatum(tag=DC.E_NS_SOURCE)
+        return self.get_dc_metadatum(tag=DublinCore.NS_SOURCE)
 
     @property
     def subjects(self):
@@ -195,7 +195,7 @@ class SimpleEPUB(object):
 
         :rtype: list of str
         """
-        return self.get_dc_metadatum(tag=DC.E_NS_SUBJECT, only_first=False)
+        return self.get_dc_metadatum(tag=DublinCore.NS_SUBJECT, only_first=False)
 
     @property
     def type(self):
@@ -204,7 +204,7 @@ class SimpleEPUB(object):
 
         :rtype: str
         """
-        return self.get_dc_metadatum(tag=DC.E_NS_TYPE)
+        return self.get_dc_metadatum(tag=DublinCore.NS_TYPE)
 
     @property
     def internal_path_cover_image(self):

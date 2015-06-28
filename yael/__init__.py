@@ -7,7 +7,7 @@ for reading, manipulating, and writing EPUB 2/3 files.
 
 from yael.asset import Asset
 from yael.container import Container
-from yael.dc import DC
+from yael.dublincore import DublinCore
 from yael.document import Document
 from yael.encryption import Encryption
 from yael.enckey import EncKey
