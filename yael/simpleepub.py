@@ -1,4 +1,3 @@
-
 # coding=utf-8
 
 """
@@ -20,12 +19,6 @@ from yael.parsingoptions import ParsingOptions
 from yael.publication import Publication
 import yael.util
 
-__author__ = "Alberto Pettarin"
-__copyright__ = "Copyright 2015, Alberto Pettarin (www.albertopettarin.it)"
-__license__ = "MIT"
-__version__ = "0.0.9"
-__email__ = "alberto@albertopettarin.it"
-__status__ = "Development"
 
 class SimpleEPUB(object):
     """
@@ -41,7 +34,7 @@ class SimpleEPUB(object):
     def __init__(self, path=None, parsing_options=None):
         self.path = path
         self.parsing_options = parsing_options
-        if parsing_options == None:
+        if parsing_options is None:
             self.parsing_options = [ParsingOptions.NO_MEDIA_OVERLAY]
         self.ebook = Publication(
             path=self.path,
@@ -232,9 +225,8 @@ class SimpleEPUB(object):
         try:
             i_p_cover = self.internal_path_cover_image
             return self.ebook.assets[i_p_cover].contents
-        except:
-            pass
-        return None
+        except Exception:
+            return None
 
     @property
     def toc(self):
@@ -257,7 +249,7 @@ class SimpleEPUB(object):
                 :class:`yael.ncxtoc.NCXToc`
         """
         resolved_toc = self.toc
-        if resolved_toc != None:
+        if resolved_toc is not None:
             i_p_toc = resolved_toc.internal_path
             for node in resolved_toc.children:
                 self._resolve_reference(i_p_toc, node)
@@ -283,7 +275,7 @@ class SimpleEPUB(object):
         :rtype: :class:`yael.navelement.NavElement`
         """
         resolved_landmarks = self.landmarks
-        if resolved_landmarks != None:
+        if resolved_landmarks is not None:
             i_p_landmarks = resolved_landmarks.internal_path
             for node in resolved_landmarks.children:
                 self._resolve_reference(i_p_landmarks, node)
@@ -335,11 +327,11 @@ class SimpleEPUB(object):
         return self.ebook.container.default_rendition.pac_document.spine_linear_index_by_internal_path(internal_path)
 
     def _resolve_reference(self, internal_path, node):
-        if (isinstance(node, NavNode)) and (node.v_href != None):
+        if (isinstance(node, NavNode)) and (node.v_href is not None):
             node.v_href = yael.util.norm_join_parent(
                 internal_path,
                 node.v_href)
-        if (isinstance(node, NCXTocNode)) and (node.v_src != None):
+        if (isinstance(node, NCXTocNode)) and (node.v_src is not None):
             node.v_src = yael.util.norm_join_parent(
                 internal_path,
                 node.v_src)
@@ -369,14 +361,12 @@ class SimpleEPUB(object):
             else:
                 accumulator = []
                 for title in titles:
-                    if title.v_text != None and len(title.v_text) > 0:
+                    if (title.v_text is not None) and (len(title.v_text) > 0):
                         accumulator.append(title.v_text)
                 return accumulator
-        else:
-            if only_first:
-                return None
-            else:
-                return []
+        if only_first:
+            return None
+        return []
 
     def asset_contents(self, internal_path):
         """
@@ -389,8 +379,7 @@ class SimpleEPUB(object):
         """
         try:
             return self.ebook.assets[internal_path].contents
-        except:
-            pass
-        return None
+        except Exception:
+            return None
 
 
