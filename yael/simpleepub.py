@@ -34,11 +34,10 @@ class SimpleEPUB(object):
     def __init__(self, path=None, parsing_options=None):
         self.path = path
         self.parsing_options = parsing_options
-        if parsing_options is None:
+        if not parsing_options:
             self.parsing_options = [ParsingOptions.NO_MEDIA_OVERLAY]
-        self.ebook = Publication(
-            path=self.path,
-            parsing_options=self.parsing_options)
+        self.ebook = Publication(path=self.path,
+                                 parsing_options=self.parsing_options)
 
     def __str__(self):
         return str(self.ebook)

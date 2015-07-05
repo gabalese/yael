@@ -69,7 +69,7 @@ class Publication(JSONAble):
         self.metadata = None
         self.encryption = None
 
-        if path is None:
+        if self.path is None:
             self.manifestation = Manifestation.MEMORY
         else:
             if os.path.exists(path):
